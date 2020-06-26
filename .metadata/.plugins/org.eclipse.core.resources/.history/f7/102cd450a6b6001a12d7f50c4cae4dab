@@ -1,0 +1,10 @@
+package com.angular.spring.model;
+
+public class Employee {
+	private String empId;
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	private String email;
+	private String address;
+}

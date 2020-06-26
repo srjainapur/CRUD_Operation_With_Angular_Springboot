@@ -1,0 +1,9 @@
+package com.angular.spring.service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface EmployeeService {
+	public ResponseEntity<Object> captureEmployeeData(Employee employee);
+}

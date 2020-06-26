@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			AngularJs $http.post() Service Response Example
+		</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script type="text/javascript">
+			var mainApp = angular.module('postserviceApp', []);
+			mainApp.controller('postServiceControl', function($scope, $http) {
+				$scope.empId = null;
+				$scope.firstName = null;
+				$scope.lastName = null;
+				$scope.middleName = null;
+				$scope.email = null;
+				$scope.address = null;
+				
+				$scope.postData = function(empId, firstName, middleName, lastName, email, address) {
+					var data = {
+						empId : empId,
+						firstName : firstName,
+						middleName : middleName,
+						lastName : lastName,
+						email : email,
+						address : address
+					};
+					
+					// Call the service
+					$http.post('employee/postData', JSON.stringify(data)).then(
+						function(response) {
+							if(response.data) {
+								$scope.msg = "Employee " + empId + " Data submitted successfully";
+							}
+						}, 
+						
+						function(response) {
+							$scope.msg = "service does not exist";							
+						}								
+					);
+				};				
+			});
+		</script>
+	</head>
+	<body>
+		<div ng-app="postserviceApp" ng-controller="postServiceControl">
+			<form name = "employeeForm" novalidate class="css-form">
+				<table>
+					<tr>
+						<th colspan="2" align="middle"><h1>Employee Details</h1></th>
+					</tr>
+					<tr>
+						<td>Employee Id</td>
+						<td>
+							<input name="empId" ng-model="empId" type="text" size="20" required />							
+						</td>
+					</tr>
+					<tr>
+						<td>First Name</td>
+						<td>
+							<input name="firstName" ng-model="firstName" type="text" size="20" required/>							
+						</td>
+					</tr>
+					<tr>
+						<td>Middle Name</td>
+						<td>
+							<input name="middleName" ng-model="middleName" type="text" size="20" required/>							
+						</td>
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td>
+							<input name="lastName" ng-model="lastName" type="text" size="20" required/>							
+						</td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td>
+							<input name="email" ng-model="email" type="text" size="20" required/>							
+						</td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td>
+							<input name="address" ng-model="address" type="text" size="20" required/>							
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="middle">
+							<input type="button" value="Submit" 
+							ng-disabled="employeeForm.$invalid"
+							ng-click="postData(empId, firstName, middleName, lastName, email, address)">
+						</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<th colspan="2" align="middle"><h2>Response Data</h2></th>
+					</tr>
+					<tr>
+						<td>Output Message</td>
+						<td>{{msg}}</td>
+					</tr>
+					<tr>
+						<td colspan="2"><a href="EmployeeDetails.html"> << Back to Employee Details </a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+	
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>Employee Management Details</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		
+		<style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+	</head>
+	
+	<body>
+		<div ng-app="mainApp" ng-controller="mainController">
+			<table width="100">
+				<tr>
+					<th colspan="1" align="middle">Employee Management System</th>
+				</tr>
+				<tr>
+					<td>
+						<div ng-include="post_data.htm"></div>
+					</td>					
+				</tr>
+				<tr>
+					<td>
+						<div ng-include="get_employee.htm"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

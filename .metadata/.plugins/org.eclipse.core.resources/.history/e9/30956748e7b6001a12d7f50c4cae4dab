@@ -1,0 +1,89 @@
+<html>
+	<head>
+      <title>Angular JS Table</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	  
+	  <style>
+		table, th, td {
+			border : 1px solid grey;
+			border-collapse : collapse;
+			padding:5px;
+		}
+		
+		table tr:nth-child(odd) {
+			background-color:#f2f2f2;
+		}
+		
+		table  tr:nth-child(even) {
+			background-color:#ffffff;
+		}
+	  </style>
+    </head>
+	
+	<body>
+		<h2 align="center">AngularJS Employee Management Application</h2>
+	  	<div ng-app="mainApp" ng-controller="employeeController" align="center">
+	  		<table align="center">
+	  			<tr>
+	  				<th colspan="8" align="center">Employees Details</th>
+	  			</tr>
+	  			<tr>
+	  				<th align="center"><b>Employee Id</b></th>
+	  				<th align="center"><b>First Name</b></th>
+	  				<th align="center"><b>Middle Name</b></th>
+	  				<th align="center"><b>Last Name</b></th>
+	  				<th align="center"><b>Email</b></th>
+	  				<th align="center"><b>Address</b></th>
+	  				<th align="center"><b>Action</b></th>
+	  				<th align="center"><b>Action</b></th>
+	  			</tr>
+	  			<tr ng-repeat="employee in employees">
+	  				<td align="center">{{employee.empId}}</td>
+	  				<td align="center">{{employee.firstName}}</td>
+	  				<td align="center">{{employee.middleName}}</td>
+	  				<td align="center">{{employee.lastName}}</td>
+	  				<td align="center">{{employee.email}}</td>
+	  				<td align="center">{{employee.address}}</td>
+	  				<td>
+	  					<button class="btn btn-primary" ng-click="editEmployee(employee.empId)">Edit</button>
+	  				</td>
+	  				<td>
+	  					<button class="btn btn-danger" ng-click="removeEmployee(employee.empId)">Remove</button>
+	  				</td>
+	  			</tr>
+	  			<tr>
+	  				<td colspan="8">&nbsp;</td>
+	  			</tr>
+	  			<tr>
+	  				<td colspan="8"><h2>{{msg}}</h2></td>
+	  			</tr>
+	  		</table>
+	  	</div>
+	  	
+	  	<script>
+	  		var mainApp = angular.module('mainApp', []);
+	  		mainApp.controller('employeeController', function($scope, $http) {
+	  			$http.get('employee/retrieveAllEmployee').
+	  			then(function(response) {
+	  				$scope.employees = response.data;
+	  			});
+	  			
+	  			/*$scope.removeEmployee = function(empId, $scope, $http) {
+	  				alert("Item to be removed " + empId);
+	  				$http.delete('employee/delete', JSON.stringify(empId)).then(
+	  					function(response) {
+	  						$scope.msg = response.data;
+	  					}
+	  				);
+	  			}*/
+	  			
+	  			var removeEmployee = function(empId){
+	  				alert("Item to be removed " + empId);
+	  			}
+	  		});
+	  		
+	  		
+	  	</script>
+	</body>
+</html>	

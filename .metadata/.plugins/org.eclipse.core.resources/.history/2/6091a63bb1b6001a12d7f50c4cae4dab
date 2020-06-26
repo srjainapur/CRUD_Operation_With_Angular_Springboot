@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			AngularJs $http.post() Service Response Example
+		</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script type="text/javascript">
+			var mainApp = angular.module('postserviceApp', []);
+			mainApp.controller('postServiceControl', function($scope, $http) {
+				$scope.empId = null;
+				$scope.firstName = null;
+				$scope.lastName = null;
+				$scope.middleName = null;
+				$scope.email = null;
+				$scope.address = null;
+				
+				$scope.postData = function(empId, firstName, middleName, lastName, email, address) {
+					var data = {
+						empId : empId,
+						firstName : firstName,
+						middleName : middleName,
+						lastName : lastName,
+						email : email,
+						address : address
+					};
+					
+					// Call the service
+					$http.post('employee/postData', JSON.stringify(data)).then(
+						function(response) {
+							if(response.data) {
+								$scope.msg = "Employee Data submitted successfully";
+							}
+						}, 
+						
+						function(response) {
+							$scope.msg = "service does not exist";
+							$scope.statusval = response.status;
+							$scope.statustext = response.statusText;
+							$scope.headers = response.headers();
+						}								
+					);
+				};				
+			});
+		</script>
+	</head>
+	<body>
+		<div ng-app="postserviceApp" ng-controller="postServiceControl">
+			<table>
+				<tr>
+					<th colspan="2" align="middle"><h1>Employee Details</h1></th>
+				</tr>
+				<tr>
+					<td>Employee Id</td>
+					<td><input name="empId" ng-model="empId" type="text"/></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	
+</html>

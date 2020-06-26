@@ -1,0 +1,30 @@
+package com.angular.spring.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.angular.spring.model.AngularModel;
+import com.angular.spring.model.Employee;
+
+@RestController
+public class AngularController {
+	
+	@RequestMapping(path = "/greeting", method = RequestMethod.GET)
+	public ResponseEntity<AngularModel> getData() {
+		AngularModel amodel = new AngularModel();
+		amodel.setId("AC55175");
+		amodel.setContent("Welcome AC55175 - Satish Jainapur");
+		
+		System.out.println("Exceuting get request");
+		
+		return new ResponseEntity<AngularModel>(amodel, HttpStatus.OK);
+	}
+	
+	public ResponseEntity<Object> captureEmployeeData(@RequestBody Employee employee) {
+		
+	}
+}

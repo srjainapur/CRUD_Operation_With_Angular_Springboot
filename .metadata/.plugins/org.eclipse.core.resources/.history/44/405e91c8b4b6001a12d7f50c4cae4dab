@@ -1,0 +1,5 @@
+package com.angular.spring.service;
+
+public interface EmployeeService {
+
+}

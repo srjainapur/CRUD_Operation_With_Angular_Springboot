@@ -1,0 +1,15 @@
+package com.angular.spring.service;
+
+import org.springframework.http.ResponseEntity;
+
+import com.angular.spring.model.Employee;
+
+public class EmployeeServiceImpl implements EmployeeService {
+
+	@Override
+	public ResponseEntity<Object> captureEmployeeData(Employee employee) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

@@ -1,0 +1,23 @@
+package com.angular.spring.model;
+
+public class AngularModel {
+
+	private String id;
+	private String greeting;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getGreeting() {
+		return greeting;
+	}
+
+	public void setGreeting(String greeting) {
+		this.greeting = greeting;
+	}
+}
